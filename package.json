@@ -1,0 +1,24 @@
+{
+  "name": "forkify",
+  "version": "1.0.0",
+  "description": "Recipe application",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html --dist-dir ./dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikhil2060/FORKIFY.git"
+  },
+  "author": "nikhil kumar singh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nikhil2060/FORKIFY/issues"
+  },
+  "homepage": "https://github.com/nikhil2060/FORKIFY#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.9.3",
+    "parcel": "^2.9.3"
+  }
+}
