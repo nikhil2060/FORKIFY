@@ -3,6 +3,8 @@ import icons from "url:../../img/icons.svg";
 class RecipeView {
   #parentElement = document.querySelector(".recipe");
   #data;
+  #errorMessage = "We could not find that recipe. please try another one!";
+  #Message = "";
 
   render(data) {
     this.#data = data;
@@ -15,15 +17,48 @@ class RecipeView {
     this.#parentElement.innerHTML = "";
   }
 
-  renderSpinner = function () {
+  renderSpinner() {
     const markup = `<div class="spinner">
     <svg>
       <use href="${icons}#icon-loader"></use>
     </svg>
   </div>`;
-    this.#parentElement.innerHTML = "";
+    this.#clear();
     this.#parentElement.insertAdjacentHTML("afterbegin", markup);
-  };
+  }
+
+  renderError(messsage = this.#errorMessage) {
+    const markup = `<div class="error">
+    <div>
+      <svg>
+        <use href="${icons}#icon-alert-triangle"></use>
+      </svg>
+    </div>
+    <p> ${messsage}</p>
+  </div>`;
+
+    this.#clear();
+    this.#parentElement.insertAdjacentHTML("afterbegin", markup);
+  }
+
+  renderMessage(messsage = this.#Message) {
+    const markup = `<div class="message">
+    <div>
+      <svg>
+        <use href="${icons}#icon-smile"></use>
+      </svg>
+    </div>
+    <p> ${messsage}</p>
+  </div>`;
+
+    this.#clear();
+    this.#parentElement.insertAdjacentHTML("afterbegin", markup);
+  }
+
+  addHandlerRender(handler) {
+    window.addEventListener("hashchange", handler);
+    window.addEventListener("load", handler);
+  }
 
   #generateMarkup() {
     return `<figure class="recipe__fig">
