@@ -103,8 +103,8 @@ body {
 .btn--inline {
   color: #f38e82;
   cursor: pointer;
-  background-color: #f9f5f3;
-  border: none;
+  background-color: #fff;
+  border: 2px solid #f38e82;
   border-radius: 10rem;
   align-items: center;
   padding: .8rem 1.2rem;
@@ -486,9 +486,8 @@ body {
 }
 
 .search-results {
-  flex-direction: column;
+  background-color: #f9f5f3;
   padding: 3rem 0;
-  display: flex;
 }
 
 .results {
