@@ -11,6 +11,27 @@ class RecipeView extends view {
     window.addEventListener("load", handler);
   }
 
+  addHandlerUpdateServings(handler) {
+    //event delegation
+    this._parentElement.addEventListener("click", (e) => {
+      const btn = e.target.closest(".btn--tiny");
+
+      if (!btn) return;
+
+      const updateTo = +btn.dataset.updateTo;
+
+      if (updateTo > 0) handler(updateTo);
+    });
+  }
+
+  addHandlerBookmark(handler) {
+    this._parentElement.addEventListener("click", (e) => {
+      const btn = e.target.closest(".btn--bookmark");
+      if (!btn) return;
+      handler();
+    });
+  }
+
   _generateMarkup() {
     return `<figure class="recipe__fig">
     <img src="${this._data.image}" alt="${
@@ -41,12 +62,16 @@ class RecipeView extends view {
       <span class="recipe__info-text">servings</span>
 
       <div class="recipe__info-buttons">
-        <button class="btn--tiny btn--increase-servings">
+        <button class="btn--tiny btn--update-servings" data-update-to="${
+          this._data.servings - 1
+        }">
           <svg>
             <use href="${icons}#icon-minus-circle"></use>
           </svg>
         </button>
-        <button class="btn--tiny btn--increase-servings">
+        <button class="btn--tiny btn--update-servings" data-update-to="${
+          this._data.servings + 1
+        }">
           <svg>
             <use href="${icons}#icon-plus-circle"></use>
           </svg>
@@ -59,9 +84,11 @@ class RecipeView extends view {
         <use href="${icons}#icon-user"></use>
       </svg>
     </div>
-    <button class="btn--round">
+    <button class="btn--round btn--bookmark">
       <svg class="">
-        <use href="${icons}#icon-bookmark-fill"></use>
+        <use href="${icons}#icon-bookmark${
+      this._data.bookmarked ? "-fill" : ""
+    }"></use>
       </svg>
     </button>
   </div>
@@ -78,7 +105,7 @@ class RecipeView extends view {
       <div class="recipe__quantity">${ing.quantity}</div>
       <div class="recipe__description">
         <span class="recipe__unit">${ing.unit}</span>
-        ${ing.desciption}
+        ${ing.description}
       </div>
     </li>`;
       })
@@ -86,26 +113,7 @@ class RecipeView extends view {
   </div>
       
 
-  <div class="recipe__directions">
-    <h2 class="heading--2">How to cook it</h2>
-    <p class="recipe__directions-text">
-      This this._data was carefully designed and tested by
-      <span class="recipe__publisher">${
-        this._data.publisher
-      }</span>. Please check out
-      directions at their website.
-    </p>
-    <a
-      class="btn--small recipe__btn"
-      href="${this._data.sourceUrl}"
-      target="_blank"
-    >
-      <span>Directions</span>
-      <svg class="search__icon">
-        <use href="${icons}#icon-arrow-right"></use>
-      </svg>
-    </a>
-  </div>`;
+  `;
   }
 }
 
