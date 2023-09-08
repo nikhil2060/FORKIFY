@@ -1,3 +1,3 @@
 # FORKIFY
 
-#**Deployed Link** - forkify-by-nikhil.netlify.app
+#**Deployed Link** - www.forkify-by-nikhil.netlify.app
